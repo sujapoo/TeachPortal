@@ -16,5 +16,17 @@ namespace TeachPortal.DataStore
 
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Student> Students { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configure the table name for the Teacher entity
+            modelBuilder.Entity<Teacher>()
+                .ToTable("Teacher");  // Use the correct table name as 'dbo.Teacher'
+
+            // Configure the table name for the Student entity if needed
+            modelBuilder.Entity<Student>()
+                .ToTable("Student");  // Use the correct table name as 'dbo.Student'
+        }
     }
 }

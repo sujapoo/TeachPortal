@@ -30,10 +30,10 @@ namespace TeachPortal.Controllers
         /// <response code="400">Invalid student data.</response>
         /// <response code="500">Error occurred while creating the student.</response>
         [HttpPost]
-        [SwaggerOperation(Summary = "Creates a new student", Description = "Creates a new student for the authenticated teacher.")]
-        [SwaggerResponse(200, "Student created successfully.")]
-        [SwaggerResponse(400, "Invalid student data.")]
-        [SwaggerResponse(500, "Error occurred while creating the student.")]
+        //[SwaggerOperation(Summary = "Creates a new student", Description = "Creates a new student for the authenticated teacher.")]
+        //[SwaggerResponse(200, "Student created successfully.")]
+        //[SwaggerResponse(400, "Invalid student data.")]
+        //[SwaggerResponse(500, "Error occurred while creating the student.")]
         public async Task<ActionResult> CreateStudentAsync([FromBody] Student student)
         {
             try
@@ -66,9 +66,9 @@ namespace TeachPortal.Controllers
         /// <response code="200">List of students retrieved successfully.</response>
         /// <response code="500">Error occurred while retrieving the students.</response>
         [HttpGet]
-        [SwaggerOperation(Summary = "Retrieves the list of students", Description = "Retrieves the list of students for the authenticated teacher.")]
-        [SwaggerResponse(200, "List of students retrieved successfully.")]
-        [SwaggerResponse(500, "Error occurred while retrieving the students.")]
+        //[SwaggerOperation(Summary = "Retrieves the list of students", Description = "Retrieves the list of students for the authenticated teacher.")]
+        //[SwaggerResponse(200, "List of students retrieved successfully.")]
+        //[SwaggerResponse(500, "Error occurred while retrieving the students.")]
         public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
         {
             try
