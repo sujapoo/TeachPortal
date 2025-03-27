@@ -23,14 +23,7 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader()
               .AllowCredentials());
 });
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowReactApp", policy =>
-        policy.WithOrigins(allowedOrigin) 
-              .AllowAnyMethod()                    
-              .AllowAnyHeader()                   
-              .AllowCredentials());             
-});
+
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -46,7 +39,6 @@ builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    // Add Bearer token to Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -56,7 +48,6 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "bearer"
     });
 
-    // Make sure the Swagger UI uses the Bearer token
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {

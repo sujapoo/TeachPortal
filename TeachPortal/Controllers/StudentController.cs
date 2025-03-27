@@ -2,7 +2,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
 using TechPortal.Models.Interfaces;
 using TechPortal.Models.Mapping;
 using TechPortal.Models.Models;
@@ -33,19 +32,14 @@ namespace TeachPortal.Controllers
         /// <returns>A response indicating the result of the student creation.</returns>
         /// <response code="200">Student created successfully.</response>
         /// <response code="400">Invalid student data.</response>
-        /// <response code="500">Error occurred while creating the student.</response>
+        /// <response code="403">Error occurred while creating the student.</response>
         
-        [HttpPost]
-        //[SwaggerOperation(Summary = "Creates a new student", Description = "Creates a new student for the authenticated teacher.")]
-        //[SwaggerResponse(200, "Student created successfully.")]
-        //[SwaggerResponse(400, "Invalid student data.")]
-        //[SwaggerResponse(500, "Error occurred while creating the student.")]
+        [HttpPost]        
         public async Task<ActionResult> CreateStudentAsync([FromBody] Student student)
         {
             try
             {
-                var authorizationHeader = Request.Headers["Authorization"].ToString();
-                _logger.LogInformation($"Authorization header: {authorizationHeader}");
+                var authorizationHeader = Request.Headers["Authorization"].ToString();                
                 var teacherId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
                 var studentDTO = _mapper.Map<PersonDTO>(student);
@@ -81,11 +75,8 @@ namespace TeachPortal.Controllers
         /// </summary>
         /// <returns>A list of students.</returns>
         /// <response code="200">List of students retrieved successfully.</response>
-        /// <response code="500">Error occurred while retrieving the students.</response>
-        [HttpGet]
-        //[SwaggerOperation(Summary = "Retrieves the list of students", Description = "Retrieves the list of students for the authenticated teacher.")]
-        //[SwaggerResponse(200, "List of students retrieved successfully.")]
-        //[SwaggerResponse(500, "Error occurred while retrieving the students.")]
+        /// <response code="403">Error occurred while retrieving the students.</response>
+        [HttpGet]        
         public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
         {
             try

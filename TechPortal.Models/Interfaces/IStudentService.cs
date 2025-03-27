@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using TechPortal.Models.Models;
+﻿using TechPortal.Models.Models;
 
 namespace TechPortal.Models.Interfaces
 {

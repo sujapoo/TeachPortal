@@ -83,7 +83,7 @@ namespace TeachPortal.Services
 
                 var token = GenerateJwtToken(teacher);
 
-                _logger.LogInformation($"Teacher logged in successfully:{request.Username}");
+                _logger.LogInformation($"Teacher logged in successfully:{request}");
                 return new Result<string>(true, "Teacher logged in successfully", token);
             }
             catch (Exception ex)

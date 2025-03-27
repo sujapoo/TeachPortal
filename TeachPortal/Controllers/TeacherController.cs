@@ -32,7 +32,7 @@ namespace TeachPortal.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while retrieving teachers");
-                return StatusCode(500, "An error occurred while retrieving teachers");
+                return StatusCode(403, "An error occurred while retrieving teachers");
             }
         }
     }

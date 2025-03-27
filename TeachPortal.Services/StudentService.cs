@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Azure.Core;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TeachPortal.DataStore;
 using TechPortal.Models.Interfaces;
@@ -29,18 +22,17 @@ namespace TeachPortal.Services
         {
             try
             {
-              
 
                 if (student == null)
                 {
-                   
+
                     return new StudentResult { Success = false, Message = "Invalid student data" };
                 }
 
                 var teacher = await _dbContext.Teachers.FindAsync(teacherId);
                 if (teacher == null)
                 {
-                    
+
                     return new StudentResult { Success = false, Message = "Teacher not found" };
                 }
 
@@ -48,7 +40,7 @@ namespace TeachPortal.Services
                 await _dbContext.Students.AddAsync(student);
                 await _dbContext.SaveChangesAsync();
 
-                _logger.LogInformation("Student registered successfully: {StudentId}", student.Id);
+                _logger.LogInformation("Student registered successfully: {Student} {teacherId}", student, teacherId);
                 return new StudentResult { Success = true, Message = "Student registered successfully", Student = student };
             }
             catch (DbUpdateException ex)
