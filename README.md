@@ -50,11 +50,7 @@ o	Add rate limiting and security measures to prevent brute-force attacks.
 o	Enhance frontend UI with better styling and responsiveness.
 
 Unit Testing: This enhancement plan integrates unit testing for each security and functionality improvement to ensure that all enhancements are validated and verified systematically.
-Unit Testing for SSL/TLS Database Connection:
-Unit Testing for JWT Authentication:
-Unit Testing for Password Strength
-Unit Testing for UI Improvements
-Unit Testing for Error Handling
+Doumentation in Controller to move OpenAPI 
 
 7.	API Endpoints
 8.	1. POST /api/auth/signup
