@@ -1,12 +1,8 @@
-﻿-- Create Database
-CREATE DATABASE TeachPortal;
-GO
-
--- Use the newly created database
+﻿
 USE TeachPortal;
 GO
 
--- Create Teacher Table
+
 CREATE TABLE Teacher (
 Id INT PRIMARY KEY IDENTITY(1,1),
 UserName NVARCHAR(50) NOT NULL,
@@ -17,7 +13,7 @@ LastName NVARCHAR(50) NULL
 );
 GO
 
--- Create Student Table
+
 CREATE TABLE Student (
 Id INT PRIMARY KEY IDENTITY(1,1),
 FirstName NVARCHAR(50) NOT NULL,
