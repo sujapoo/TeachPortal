@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace TechPortal.Models.Models
 {
     public class Teacher
     {
+        [JsonIgnore]
         public int Id { get; set; }
 
         [Required]
@@ -17,7 +19,7 @@ namespace TechPortal.Models.Models
         public string UserName { get; set; }
 
         [Required]
-        [EmailAddress]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid email address.")]        
         public string Email { get; set; }
 
         [Required]

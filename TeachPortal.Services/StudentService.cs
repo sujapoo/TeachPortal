@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using TeachPortal.DataStore;
 using TechPortal.Models.Interfaces;
 using TechPortal.Models.Models;
+
 
 namespace TeachPortal.Services
 {
@@ -27,16 +29,18 @@ namespace TeachPortal.Services
         {
             try
             {
+              
+
                 if (student == null)
                 {
-                    _logger.LogWarning("Attempted to create a student with null data.");
+                   
                     return new StudentResult { Success = false, Message = "Invalid student data" };
                 }
 
                 var teacher = await _dbContext.Teachers.FindAsync(teacherId);
                 if (teacher == null)
                 {
-                    _logger.LogWarning("Teacher not found: {TeacherId}", teacherId);
+                    
                     return new StudentResult { Success = false, Message = "Teacher not found" };
                 }
 

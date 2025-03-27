@@ -30,10 +30,7 @@ namespace TeachPortal.Controllers
         /// <response code="400">Invalid teacher data.</response>
         /// <response code="500">Database update error occurred while registering teacher.</response>
         [HttpPost("signup")]
-        //[SwaggerOperation(Summary = "Registers a new teacher", Description = "Registers a new teacher with the provided details.")]
-        //[SwaggerResponse(200, "Teacher registered successfully.")]
-        //[SwaggerResponse(400, "Invalid teacher data.")]
-        //[SwaggerResponse(500, "Database update error occurred while registering teacher.")]
+        
         public async Task<IActionResult> SignupAsync([FromBody] Teacher teacher)
         {
             var result = await _authService.SignupAsync(teacher);
@@ -54,10 +51,7 @@ namespace TeachPortal.Controllers
         /// <response code="400">Invalid login request.</response>
         /// <response code="500">Error occurred while logging in.</response>
         [HttpPost("login")]
-        //[SwaggerOperation(Summary = "Logs in a teacher", Description = "Logs in a teacher with the provided credentials.")]
-        //[SwaggerResponse(200, "Teacher logged in successfully.")]
-        //[SwaggerResponse(400, "Invalid login request.")]
-        //[SwaggerResponse(500, "Error occurred while logging in.")]
+        
         public async Task<IActionResult> LoginAsync([FromBody] LoginRequest request)
         {
             var result = await _authService.LoginAsync(request);

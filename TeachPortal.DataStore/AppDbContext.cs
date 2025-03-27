@@ -19,14 +19,12 @@ namespace TeachPortal.DataStore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Configure the table name for the Teacher entity
+           
             modelBuilder.Entity<Teacher>()
-                .ToTable("Teacher");  // Use the correct table name as 'dbo.Teacher'
-
-            // Configure the table name for the Student entity if needed
+                .ToTable("Teacher"); 
+            
             modelBuilder.Entity<Student>()
-                .ToTable("Student");  // Use the correct table name as 'dbo.Student'
+                .ToTable("Student"); 
         }
     }
 }

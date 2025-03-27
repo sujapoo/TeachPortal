@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -34,11 +30,18 @@ namespace TeachPortal.Services
             {
                 if (teacher == null)
                 {
-                    _logger.LogError("Invalid teacher data: teacher is null");
+                   
                     return new Result<string>(false, "Invalid teacher data");
                 }
 
-                _logger.LogInformation("Registering new teacher: {UserName}, {Email}", teacher.UserName, teacher.Email);
+                var existingTeacher = await _dbContext.Teachers
+                .FirstOrDefaultAsync(t => t.Email == teacher.Email);
+
+                if (existingTeacher != null)
+                {
+                   
+                    return new Result<string>(false, "A teacher with this email already exists");
+                }
 
                 teacher.PasswordHash = BCrypt.Net.BCrypt.HashPassword(teacher.PasswordHash);
 
@@ -66,28 +69,26 @@ namespace TeachPortal.Services
             try
             {
                 if (request == null)
-                {
-                    _logger.LogError("Invalid login request: request is null");
+                {                  
                     return new Result<string>(false, "Invalid login request");
                 }
 
-                _logger.LogInformation("Logging in teacher: {UserName}", request.Username);
+                
 
                 var teacher = await _dbContext.Teachers.FirstOrDefaultAsync(t => t.UserName == request.Username);
                 if (teacher == null || !BCrypt.Net.BCrypt.Verify(request.Password, teacher.PasswordHash))
-                {
-                    _logger.LogError("Teacher not found or invalid password: {UserName}", request.Username);
+                {                    
                     return new Result<string>(false, "Invalid username or password");
                 }
 
                 var token = GenerateJwtToken(teacher);
 
-                _logger.LogInformation("Teacher logged in successfully: {UserName}", request.Username);
+                _logger.LogInformation($"Teacher logged in successfully:{request.Username}");
                 return new Result<string>(true, "Teacher logged in successfully", token);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while logging in teacher: {UserName}", request.Username);
+                _logger.LogError(ex, $"Error occurred while logging in teacher: {request.Username}");
                 return new Result<string>(false, "An error occurred while logging in the teacher");
             }
         }
