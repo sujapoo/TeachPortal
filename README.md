@@ -6,7 +6,7 @@ git clone https://github.com/sujapoo/TeachPortal.git
 cd TeachPortal
 
 2. Install Dependencies
-Install the necessary dependencies using the NuGet package manager.
+•	 Install the necessary dependencies using the NuGet package manager.
 3. Set Up Database
 •	Ensure your database (SQL Server) is running and configured.
 •	Update the connection string in appsettings.json.
@@ -20,13 +20,13 @@ Install the necessary dependencies using the NuGet package manager.
 
 Design Patterns Used
 1.Service Layer Pattern
-o	Business logic is implemented in service layers (AuthService, TeacherService, StudentService), keeping the controller layer focused on HTTP request handling.
+•	Business logic is implemented in service layers (AuthService, TeacherService, StudentService), keeping the controller layer focused on HTTP request handling.
 2.	JWT Authentication
-o	Secures the API with JSON Web Tokens. Tokens are generated on login and used for authenticating subsequent requests.
+•	Secures the API with JSON Web Tokens. Tokens are generated on login and used for authenticating subsequent requests.
 3.	Factory Method
-o	Used for validating input data in the SignupForm on the frontend.
+•	Used for validating input data in the SignupForm on the frontend.
 4.	DTO (Data Transfer Object)
-o	Ensures data consistency between layers (e.g., LoginRequest, Teacher, Student).
+•	Ensures data consistency between layers (e.g., LoginRequest, Teacher, Student).
 Assumptions and Enhancements
 Assumptions
 •	On-premises setup with optional cloud integrations.
@@ -35,34 +35,36 @@ Assumptions
 
 Planned Enhancements
 1.	Database Connection Security
-o	Implement SSL/TLS encryption for secure communication.
+•	Implement SSL/TLS encryption for secure communication.
 2.	Role-Based Authorization
-o	Introduce Admin, Teacher, and Student roles for enhanced access control.
+•	Introduce Admin, Teacher, and Student roles for enhanced access control.
 3.	Improved Validation
-o	Add password strength validation and advanced email uniqueness checks.
+•	Add password strength validation and advanced email uniqueness checks.
 4.	Advanced Error Handling
-o	Implement detailed error messages and validations in both frontend and backend.
+•	Implement detailed error messages and validations in both frontend and backend.
 5.	Rate Limiting
-o	Add rate limiting and security measures to prevent brute-force attacks.
-6.	UI Improvements
-o	Enhance frontend UI with better styling and responsiveness.
-7. Unit Testing:
-This enhancement plan integrates unit testing for each security and functionality improvement to ensure that all enhancements are validated and verified systematically.
-8. Forget password
-9. Update, Delete student and Teacher infromation.
+•	Add rate limiting and security measures to prevent brute-force attacks.
+6.	Improved App Level Security
+•	To enhance your application’s security, you can implement both Security Headers and Error Handling practices
+7.	UI Improvements
+•	Enhance frontend UI with better styling and responsiveness.
+8. Unit Testing:
+•	This enhancement plan integrates unit testing for each security and functionality improvement to ensure that all enhancements are validated and verified systematically.
+9. Forget password feature
+10. Update, Delete student and Teacher infromation.
+11. Teacher Summary - Include hyperlink to see list of students under each teacher.
+12.	API Endpoints
+  1. POST /api/auth/signup
+      Registers a new teacher. 
 
-10.	API Endpoints
-1. POST /api/auth/signup
-Registers a new teacher. 
+  2. POST /api/auth/login
+      Authenticates a teacher and returns a JWT token. 
 
-2. POST /api/auth/login
-Authenticates a teacher and returns a JWT token. 
+  3. POST /api/students
+      Adds a new student. R
 
-3. POST /api/students
-Adds a new student. R
+  4. GET /api/students
+      Retrieves a list of all students. Response: 200 OK - Returns an array of students.
 
-4. GET /api/students
-Retrieves a list of all students. Response: 200 OK - Returns an array of students.
-
-5. GET /api/teacher
-Retrieves a list of all teachers with an overview (name and student count). Response: 200 OK - Returns an array of teacher overviews.
+  5. GET /api/teacher
+      Retrieves a list of all teachers with an overview (name and student count). Response: 200 OK - Returns an array of teacher overviews.
