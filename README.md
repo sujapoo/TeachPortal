@@ -19,22 +19,20 @@ Install the necessary dependencies using the NuGet package manager.
 •	Explore and test the API endpoints through the Swagger interface.
 
 Design Patterns Used
-1.	Repository Pattern
-o	AppDbContext abstracts database access for better maintainability and testing.
-o	Facilitates clean and modular data entity management.
-2.	Service Layer Pattern
+1.Service Layer Pattern
 o	Business logic is implemented in service layers (AuthService, TeacherService, StudentService), keeping the controller layer focused on HTTP request handling.
-3.	JWT Authentication
+2.	JWT Authentication
 o	Secures the API with JSON Web Tokens. Tokens are generated on login and used for authenticating subsequent requests.
-4.	Factory Method
+3.	Factory Method
 o	Used for validating input data in the SignupForm on the frontend.
-5.	DTO (Data Transfer Object)
+4.	DTO (Data Transfer Object)
 o	Ensures data consistency between layers (e.g., LoginRequest, Teacher, Student).
 Assumptions and Enhancements
 Assumptions
 •	On-premises setup with optional cloud integrations.
 •	SQL Server is installed and configured.
 •	JWT tokens are securely stored in the client-side storage (e.g., localStorage).
+
 Planned Enhancements
 1.	Database Connection Security
 o	Implement SSL/TLS encryption for secure communication.
@@ -48,44 +46,23 @@ o	Implement detailed error messages and validations in both frontend and backend
 o	Add rate limiting and security measures to prevent brute-force attacks.
 6.	UI Improvements
 o	Enhance frontend UI with better styling and responsiveness.
+7. Unit Testing:
+This enhancement plan integrates unit testing for each security and functionality improvement to ensure that all enhancements are validated and verified systematically.
+8. Forget password
+9. Update, Delete student and Teacher infromation.
 
-Unit Testing: This enhancement plan integrates unit testing for each security and functionality improvement to ensure that all enhancements are validated and verified systematically.
-Doumentation in Controller to move OpenAPI 
+10.	API Endpoints
+1. POST /api/auth/signup
+Registers a new teacher. 
 
-7.	API Endpoints
-8.	1. POST /api/auth/signup
-9.	Registers a new teacher. Request Body:
-json
-{
-  "userName": "string",
-  "email": "string",
-  "passwordHash": "string",
-  "firstName": "string",
-  "lastName": "string",
-  "students": []
-}
-Response: 200 OK - Teacher successfully registered.
-10.	2. POST /api/auth/login
-Authenticates a teacher and returns a JWT token. Request Body:
-json
-{
-  "username": "string",
-  "password": "string"
-}
-Response: 200 OK - Returns a JWT token.
-11.	3. POST /api/students
-Adds a new student. Request Body:
-json
-{
-  "firstName": "string",
-  "lastName": "string",
-  "email": "string",
-  "teacherId": 1,
-  "teacher": null
-}
-Response: 200 OK - Student successfully added.
-12.	4. GET /api/students
+2. POST /api/auth/login
+Authenticates a teacher and returns a JWT token. 
+
+3. POST /api/students
+Adds a new student. R
+
+4. GET /api/students
 Retrieves a list of all students. Response: 200 OK - Returns an array of students.
-13.	5. GET /api/teacher
-14.	Retrieves a list of all teachers with an overview (name and student count). Response: 200 OK - Returns an array of teacher overviews.
 
+5. GET /api/teacher
+Retrieves a list of all teachers with an overview (name and student count). Response: 200 OK - Returns an array of teacher overviews.
